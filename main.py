@@ -10,7 +10,7 @@ def menu():
     print("1 - CADASTRAR LIVRO/AUTOR") #OK
     print("2 - CADASTRAR DETALHE PESSOA") #OK
     print("3 - SOLICITAR EMPRESTIMO")
-    print("4 - CADASTRAR PESSOA")
+    print("4 - INFORMAÇÕES")
     print("5 - SOLICITAR RESERVA")
     print("6 - ATUALIZAR/LISTAR/EXCLUIR LIVROS CADASTRADO")#ok,ok,..
     print("7 - ENCERRAR O SISTEMA!!! ")
@@ -33,6 +33,7 @@ while True:
         matricula = int(input("Informe a sua matricula: "))
         tipo = str(input("Informe se é Funcionário/Estudante? "))
         detalhe_pessoa(conbd,nome_pessoa,endereco,cep,matricula,tipo)
+    
     elif escolha == 6:
         print("1 - Atualizar Livro/Autor")
         print("2 - Listar Livros/Autores")
@@ -53,12 +54,16 @@ while True:
             listar_livros_autores(conbd)
         
         elif opcao == 3:
-            nome_l = str(input("Digite o ID do livro para excluir: "))
-            excluir_livro_autor(conbd, nome_l)
+            id_livro = str(input("Digite o nome do livro para excluir: "))
+            excluir_livro_autor(conbd, id_livro)
         
         else:
             print("Opção inválida.")
-        
+    elif escolha == 3:
+         listar_livros_autores(conbd)
+         livro_solicitado = str(input("Selecione o livro desejado: "))
+         emprestismo(conbd,livro_solicitado)   
+           
         
     elif escolha == 7:
         break   

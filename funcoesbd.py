@@ -15,7 +15,7 @@ def cadastrar_livro_autor(conbd,N_livro,D_sinopse,ano_p,c_isbn,n_autor):
     print("Cadastrado")
     mycursor.close()
     
-    
+ 
     
 def detalhe_pessoa(conbd,nome_p,endereco,cep,matricula,tipo):
     mycursor = conbd.cursor()
@@ -71,11 +71,8 @@ def listar_livros_autores(conbd):
         print(f"{linha[0]} | {linha[1]} | {linha[2]} | {linha[3]} | {linha[4]} | {linha[5]}")
     
     mycursor.close()
-
-
-
-    
-def excluir_livro_autor(conbd,  ):
+  
+def excluir_livro_autor(conbd,id_livro  ):
     try:
         mycursor = conbd.cursor()
         
@@ -83,7 +80,7 @@ def excluir_livro_autor(conbd,  ):
         sql_autor = "UPDATE autor SET id_livro = NULL WHERE id_livro = %s"
         mycursor.execute(sql_autor, (id_livro,))
         sql_livro = "DELETE FROM livro WHERE id_livro = %s"
-        mycursor.execute(sql_livro, (nome_l,))
+        mycursor.execute(sql_livro, (id_livro,))
         conbd.commit()
 
         print("Livro e as referências no autor foram excluídos com sucesso.")
@@ -91,4 +88,13 @@ def excluir_livro_autor(conbd,  ):
     except Exception as e:
         conbd.rollback()  # Em caso de erro, faz o rollback
         print(f"Ocorreu um erro: {e}")
+        
+        
+
+
+
+
+
+
+
     
